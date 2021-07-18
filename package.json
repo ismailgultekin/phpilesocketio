@@ -1,0 +1,16 @@
+{
+  "name": "phpsocketio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "appsp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "eiows": "^3.6.0",
+    "socket.io": "^2.0.4"
+  }
+}

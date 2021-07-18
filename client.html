@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Client Socketio Html Kullanımı</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--
+    -- localdeki socket.io.js dosyamız
+    <script src="http://localhost:5000/socket.io/socket.io.js"></script>
+
+    -- aynı klasordeki socket.io.js dosyamız
+    <script src="socket.io.js"></script>
+
+    -- Sunucuda ki socket.io.js dosyamız
+    <script src="http://104.248.196.221:5000/socket.io/socket.io.js"></script>
+
+    -- Cdn üzerinde ki socket.io.js dosyamız
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+
+    -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script>
+      //$(() => { //jquery dahil ediyoruz
+        //var socket = io('http://localhost:5000/');
+        var socket = io.connect("http://104.248.196.221:5000");
+        //var socket = io('https://104.248.196.221:5000', {   secure: true });
+
+        //Socket on ile () eventını dinleyeceğiz
+        socket.on('messages', function(data){
+          console.log("client dinleniyor");
+          console.log(data);
+          //alert(data.name);
+          $('.snc').html('Ad: '+ data.name+" Soyadı: "+data.surname)
+        });
+
+        //emit ile () veri gonderiyoruz
+        socket.emit('send-message', {"name":"ismail","surname":"gültekin"});
+      //});
+
+    </script>
+  </head>
+  <body style="text-align:center;padding-top:100px">
+    <h1>Nodejs Socketio Htmlde Kullanımı </h1>
+    <h2>(Kullanıcı: (Client) Tarafı)</h2>
+    <p>Nodejs server tarafıyla haberleşerek client tarafında verileri ekrana yazdırıyoruz.</p>
+    <h3 style="color:orange;margin-top:50px;">Dinlenen Sonuçlar:</h3>
+    <p class="snc" style="font-size:21px;color:red;margin-top:50px;"></p>
+  </body>
+</html>
